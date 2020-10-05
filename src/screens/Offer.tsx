@@ -6,7 +6,7 @@ import {
   FlatList,
   SafeAreaView,
   StyleSheet,
-  TouchableWithoutFeedback,
+  TouchableOpacity,
 } from 'react-native';
 
 import { OfferCardProp, OfferNavParamList } from '../../types';
@@ -46,11 +46,12 @@ const Offer = ({
             data={offerBanner}
             keyExtractor={({ id }: OfferCardProp) => id.toString()}
             renderItem={({ item, index }: any) => (
-              <TouchableWithoutFeedback
+              <TouchableOpacity
                 onPress={() => navigation.navigate('OfferDetail')}
+                activeOpacity={0.9}
               >
                 <OfferCard image={item.image} y={y} index={index} />
-              </TouchableWithoutFeedback>
+              </TouchableOpacity>
             )}
           />
           <Box style={{ paddingBottom: 60 }} />

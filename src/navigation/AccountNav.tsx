@@ -1,14 +1,16 @@
-import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import { AccountNavParamList } from "../../types";
+import { AccountNavParamList } from '../../types';
 import {
   Profile,
   BasicInfo,
   AddressInfo,
   PaymentInfo,
   Password,
-} from "../screens";
+  AddAddress,
+  AddCard,
+} from '../screens';
 
 const AccountStack = createStackNavigator<AccountNavParamList>();
 
@@ -20,6 +22,8 @@ const AcountNav = () => {
       <AccountStack.Screen name="AddressInfo" component={AddressInfo} />
       <AccountStack.Screen name="PaymentInfo" component={PaymentInfo} />
       <AccountStack.Screen name="Password" component={Password} />
+      <AccountStack.Screen name="AddCard" component={AddCard} />
+      <AccountStack.Screen name="AddAddress" component={AddAddress} />
     </AccountStack.Navigator>
   );
 };

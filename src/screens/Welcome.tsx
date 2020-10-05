@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import { StyleSheet, Dimensions, SafeAreaView } from "react-native";
-import * as Yup from "yup";
-import { Formik } from "formik";
-import { StackScreenProps } from "@react-navigation/stack";
+import React, { useState } from 'react';
+import { StyleSheet, Dimensions, SafeAreaView } from 'react-native';
+import * as Yup from 'yup';
+import { Formik } from 'formik';
+import { StackScreenProps } from '@react-navigation/stack';
 
-import theme, { Box, Text } from "../components/Theme";
+import theme, { Box, Text } from '../components/Theme';
 import {
   Button,
   ErrorMessage,
   Link,
   LoginButton,
   TextInput,
-} from "../components";
-import { AuthParamList, User } from "../../types";
-import { useAppContext } from "../context/context";
-import { CloseEye, Eye } from "../Svg";
-import { TouchableOpacity } from "react-native-gesture-handler";
+} from '../components';
+import { AuthParamList } from '../../types';
+import { useAppContext } from '../context/context';
+import { CloseEye, Eye } from '../Svg';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const { width } = Dimensions.get("window");
+const { width } = Dimensions.get('window');
 const SCREEN_PADDING = theme.spacing.xl * 2;
 const SEPERATOR_TEXT_WIDTH = 60;
 const SEPERATOR_WIDTH = (width - SCREEN_PADDING - SEPERATOR_TEXT_WIDTH) / 2;
@@ -25,14 +25,14 @@ const SEPERATOR_WIDTH = (width - SCREEN_PADDING - SEPERATOR_TEXT_WIDTH) / 2;
 const styles = StyleSheet.create({
   container: {
     paddingBottom: 20,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     flex: 1,
     backgroundColor: theme.colors.white,
   },
   logo: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     width: 72,
     height: 72,
     backgroundColor: theme.colors.primary,
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     marginTop: theme.spacing.l,
   },
   seperator: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginTop: theme.spacing.l,
     marginBottom: theme.spacing.l,
   },
@@ -54,17 +54,17 @@ const styles = StyleSheet.create({
 
 const LoginSchema = Yup.object().shape({
   password: Yup.string()
-    .min(4, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
-  email: Yup.string().email("Invalid email").required("Required"),
+    .min(4, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  email: Yup.string().email('Invalid email').required('Required'),
 });
 
 interface WelcomeProps {}
 
 const Welcome = ({
   navigation,
-}: StackScreenProps<AuthParamList, "Welcome">) => {
+}: StackScreenProps<AuthParamList, 'Welcome'>) => {
   const [passwordVissible, setPasswordVissible] = useState<boolean>(false);
   const { user, setUserState } = useAppContext();
   const [errorVisible, setErrorVisible] = useState<boolean>(false);
@@ -81,7 +81,7 @@ const Welcome = ({
       </Text>
       <Formik
         validationSchema={LoginSchema}
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ email: '', password: '' }}
         onSubmit={(values) => {
           setUserState(true);
         }}
@@ -109,13 +109,13 @@ const Welcome = ({
                 textContentType="emailAddress"
                 icon="mail"
                 placeholder="Your Email"
-                onChangeText={handleChange("email")}
-                onBlur={handleBlur("email")}
+                onChangeText={handleChange('email')}
+                onBlur={handleBlur('email')}
                 error={errors.email}
                 touched={touched.email}
               />
             </Box>
-            <Box style={{ flexDirection: "row" }}>
+            <Box style={{ flexDirection: 'row' }}>
               <TextInput
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -123,12 +123,12 @@ const Welcome = ({
                 textContentType="password"
                 icon="lock"
                 placeholder="Password"
-                onChangeText={handleChange("password")}
-                onBlur={handleBlur("password")}
+                onChangeText={handleChange('password')}
+                onBlur={handleBlur('password')}
                 error={errors.password}
                 touched={touched.password}
               />
-              <Box style={{ position: "absolute", left: width - 80, top: 14 }}>
+              <Box style={{ position: 'absolute', left: width - 80, top: 14 }}>
                 <TouchableOpacity
                   activeOpacity={0.8}
                   onPress={() => setPasswordVissible(!passwordVissible)}
@@ -158,8 +158,8 @@ const Welcome = ({
           style={{
             marginTop: 10,
             width: SEPERATOR_TEXT_WIDTH,
-            justifyContent: "center",
-            alignItems: "center",
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <Text variant="h5" color="grey" paddingLeft="m" paddingRight="m">
@@ -174,25 +174,25 @@ const Welcome = ({
         />
       </Box>
       <Box style={{ marginBottom: 10, marginTop: 7 }}>
-        <LoginButton type="Google" onPress={() => alert("Login with Google")} />
+        <LoginButton type="Google" onPress={() => alert('Login with Google')} />
       </Box>
       <LoginButton
         type="Facebook"
-        onPress={() => alert("Login with Facebook")}
+        onPress={() => alert('Login with Facebook')}
       />
       <Box marginTop="l">
         <Link
           label="Forgot password?"
-          onPress={() => navigation.navigate("ForgotPassword")}
+          onPress={() => navigation.navigate('ForgotPassword')}
         />
       </Box>
-      <Box style={{ flexDirection: "row", marginTop: 8 }}>
+      <Box style={{ flexDirection: 'row', marginTop: 8 }}>
         <Text variant="b3" color="grey">
-          Don't have an account?{" "}
+          Don't have an account?{' '}
         </Text>
         <Link
           label="Register"
-          onPress={() => navigation.navigate("Register")}
+          onPress={() => navigation.navigate('Register')}
         />
       </Box>
     </SafeAreaView>

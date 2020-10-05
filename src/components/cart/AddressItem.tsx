@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { Dimensions, StyleSheet, TouchableWithoutFeedback } from "react-native";
-import { DeliveryAddress } from "../../../types";
+import React, { useState } from 'react';
+import { Dimensions, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { Feather as Icon } from '@expo/vector-icons';
 
-import { theme, Box, Text, Button } from "../../components";
+import { DeliveryAddress } from '../../../types';
+import { theme, Box, Text, Button } from '../../components';
 
-const { width } = Dimensions.get("window");
+const { width } = Dimensions.get('window');
 const COMPONENT_WIDTH = width - theme.spacing.xl * 2;
 
 const styles = StyleSheet.create({
@@ -19,16 +20,18 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   subView: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
 
 interface AddressItemProps {
   address: DeliveryAddress;
+  trash?: () => void;
+  touchable?: boolean;
 }
 
-const AddressItem = ({ address }: AddressItemProps) => {
+const AddressItem = ({ address, trash, touchable }: AddressItemProps) => {
   const [select, setSelect] = useState(false);
   const { name, addressDetail, phone } = address;
   const borderColor =
@@ -36,7 +39,7 @@ const AddressItem = ({ address }: AddressItemProps) => {
   return (
     <TouchableWithoutFeedback
       onPress={() => {
-        setSelect(!select);
+        if (touchable === true) setSelect(!select);
       }}
     >
       <Box style={[styles.container, { borderColor: borderColor }]}>
@@ -50,8 +53,9 @@ const AddressItem = ({ address }: AddressItemProps) => {
           {phone}
         </Text>
         <Box style={styles.subView}>
-          <Button label="Edit" onPress={() => alert("edit")} width={77} />
-          <Box style={{ marginLeft: 20 }} />
+          <Button label="Edit" onPress={() => alert('edit')} width={77} />
+          <Box style={{ marginLeft: 35 }} />
+          {trash && <Icon name="trash" color={theme.colors.grey} size={24} />}
         </Box>
       </Box>
     </TouchableWithoutFeedback>

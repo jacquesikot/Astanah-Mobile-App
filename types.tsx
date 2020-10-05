@@ -60,6 +60,8 @@ export type AccountNavParamList = {
   AddressInfo: undefined;
   PaymentInfo: undefined;
   Password: undefined;
+  AddCard: undefined;
+  AddAddress: undefined;
 };
 
 export type OfferNavParamList = {
