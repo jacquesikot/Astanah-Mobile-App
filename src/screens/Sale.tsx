@@ -1,16 +1,16 @@
-import { StackScreenProps } from "@react-navigation/stack";
-import React from "react";
+import { StackScreenProps } from '@react-navigation/stack';
+import React from 'react';
 import {
   ScrollView,
   StyleSheet,
   SafeAreaView,
   TouchableOpacity,
-} from "react-native";
-import { HomeNavParamList, Product } from "../../types";
+} from 'react-native';
+import { HomeNavParamList, Product } from '../../types';
 
-import { Banner, Box, StackHeader, theme } from "../components";
-import { products } from "../data";
-import ProductCard, { CARD_MARGIN } from "../components/card/ProductCard";
+import { Banner, Box, StackHeader, theme } from '../components';
+import { products } from '../data';
+import ProductCard, { CARD_MARGIN } from '../components/card/ProductCard';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.white,
   },
   products: {
-    flexDirection: "row",
-    flexWrap: "wrap",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     marginLeft: theme.spacing.xl,
     marginTop: 20,
     marginBottom: 80,
@@ -40,9 +40,9 @@ const Sale = ({ navigation }: StackScreenProps<HomeNavParamList>) => {
           bounces={false}
           showsVerticalScrollIndicator={false}
         >
-          <Box style={{ alignItems: "center", marginTop: 20 }}>
+          <Box style={{ alignItems: 'center', marginTop: 20 }}>
             <Banner
-              image={require("../../assets/banner2.jpeg")}
+              image={require('../../assets/offer/offer4.jpg')}
               margin={false}
             />
           </Box>
@@ -51,7 +51,7 @@ const Sale = ({ navigation }: StackScreenProps<HomeNavParamList>) => {
               return (
                 <TouchableOpacity
                   onPress={() =>
-                    navigation.navigate("ProductDetail", { product: product })
+                    navigation.navigate('ProductDetail', { product: product })
                   }
                 >
                   <ProductCard key={product.id} product={product} />

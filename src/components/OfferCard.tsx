@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   container: {
     width: CARD_WIDTH,
     height: CARD_HEIGHT,
-    borderRadius: 5,
+    borderRadius: 20,
     overflow: 'hidden',
     marginBottom: 20,
   },

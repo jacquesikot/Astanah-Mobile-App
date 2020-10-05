@@ -1,16 +1,16 @@
-import React, { ReactNode } from "react";
-import { StyleSheet } from "react-native";
+import React, { ReactNode } from 'react';
+import { StyleSheet } from 'react-native';
 
-import { Box, Text, theme } from "..";
-import { Category } from "../../../types";
+import { Box, Text, theme } from '..';
+import { Category } from '../../../types';
+import { CARD_MARGIN } from './Banner';
 
 export const CIRCLE_WIDTH = 70;
 export const CIRCLE_MARGIN = 10;
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
-    marginRight: CIRCLE_MARGIN,
+    alignItems: 'center',
     height: 109,
   },
   circle: {
@@ -20,24 +20,26 @@ const styles = StyleSheet.create({
     borderColor: theme.colors.light,
     borderWidth: 1,
     borderRadius: CIRCLE_WIDTH / 2,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     marginBottom: 7,
   },
   text: {
     width: CIRCLE_WIDTH,
-    textAlign: "center",
+    textAlign: 'center',
   },
 });
 
 interface HomeCategoryProps {
   category: Category;
+  margin?: number;
 }
 
-const HomeCategory = ({ category }: HomeCategoryProps) => {
+const HomeCategory = ({ category, margin }: HomeCategoryProps) => {
+  const marginValue = margin ? margin : CIRCLE_MARGIN;
   const { label, icon } = category;
   return (
-    <Box style={styles.container}>
+    <Box style={[styles.container, { marginRight: marginValue }]}>
       <Box style={styles.circle}>
         {icon ? (
           icon

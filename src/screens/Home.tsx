@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 import {
   StyleSheet,
   Animated,
   SafeAreaView,
   FlatList,
   TouchableOpacity,
-} from "react-native";
-import Constants from "expo-constants";
-import { StackScreenProps } from "@react-navigation/stack";
+} from 'react-native';
+import Constants from 'expo-constants';
+import { StackScreenProps } from '@react-navigation/stack';
 
 import {
   Box,
@@ -19,13 +19,13 @@ import {
   Banner,
   ProductCard,
   HomeCategory,
-} from "../components";
-import { SLIDE_HEIGHT } from "../components/home/BannerSlider";
-import { CARD_MARGIN } from "../components/card/ProductCard";
-import { categories, products } from "../data";
-import { HomeNavParamList } from "../../types";
-import { HEADER_HEIGHT } from "../components/home/HomeHeader";
-import homeBanners from "../data/homeBanner";
+} from '../components';
+import { SLIDE_HEIGHT } from '../components/home/BannerSlider';
+import { CARD_MARGIN } from '../components/card/ProductCard';
+import { categories, products } from '../data';
+import { HomeNavParamList } from '../../types';
+import { HEADER_HEIGHT } from '../components/home/HomeHeader';
+import homeBanners from '../data/homeBanner';
 
 const NEW_HEADER_HEIGHT = HEADER_HEIGHT + Constants.statusBarHeight;
 const CARD_WIDTH = 141;
@@ -40,19 +40,19 @@ const styles = StyleSheet.create({
     marginTop: NEW_HEADER_HEIGHT,
     marginBottom: 30,
     height: SLIDE_HEIGHT,
-    alignItems: "center",
+    alignItems: 'center',
   },
   linkText: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     paddingLeft: theme.spacing.xl,
     paddingRight: theme.spacing.xl,
     marginBottom: 15,
   },
   products: {
-    flexDirection: "row",
-    flexWrap: "wrap",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     marginLeft: theme.spacing.xl,
     marginTop: 20,
     marginRight: -CARD_MARGIN,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
 
 interface HomeProps {}
 
-const Home = ({ navigation }: StackScreenProps<HomeNavParamList, "Home">) => {
+const Home = ({ navigation }: StackScreenProps<HomeNavParamList, 'Home'>) => {
   const scrollY = new Animated.Value(0);
   const diffClamp = Animated.diffClamp(scrollY, 0, NEW_HEADER_HEIGHT);
   const translateY = diffClamp.interpolate({
@@ -76,14 +76,17 @@ const Home = ({ navigation }: StackScreenProps<HomeNavParamList, "Home">) => {
           style={{
             zIndex: 1000,
             elevation: 1000,
-            position: "absolute",
+            position: 'absolute',
             top: 0,
             left: 0,
             right: 0,
             transform: [{ translateY: translateY }],
           }}
         >
-          <HomeHeader navigation={navigation} />
+          <HomeHeader
+            favorite={() => navigation.navigate('Favorites')}
+            notification={() => navigation.navigate('Notifications')}
+          />
         </Animated.View>
         <Animated.ScrollView
           scrollEventThrottle={16}
@@ -108,13 +111,13 @@ const Home = ({ navigation }: StackScreenProps<HomeNavParamList, "Home">) => {
             <Box style={{ flex: 1 }} />
             <HomeLink
               label="All categories"
-              onPress={() => navigation.navigate("Categories")}
+              onPress={() => navigation.navigate('Categories')}
             />
           </Box>
           <Box
             style={{
               marginBottom: 15,
-              alignItems: "center",
+              alignItems: 'center',
               paddingLeft: 20,
               marginRight: 20,
             }}
@@ -127,7 +130,7 @@ const Home = ({ navigation }: StackScreenProps<HomeNavParamList, "Home">) => {
               renderItem={({ item }) => (
                 <TouchableOpacity
                   onPress={() =>
-                    navigation.navigate("CategoryDetail", { category: item })
+                    navigation.navigate('CategoryDetail', { category: item })
                   }
                 >
                   <HomeCategory category={item} />
@@ -142,7 +145,7 @@ const Home = ({ navigation }: StackScreenProps<HomeNavParamList, "Home">) => {
             <Box style={{ flex: 1 }} />
             <HomeLink
               label="See more"
-              onPress={() => navigation.navigate("Sale")}
+              onPress={() => navigation.navigate('Sale')}
             />
           </Box>
           <Box style={{ paddingLeft: 20, paddingRight: 20 }}>
@@ -154,7 +157,7 @@ const Home = ({ navigation }: StackScreenProps<HomeNavParamList, "Home">) => {
               renderItem={({ item }) => (
                 <TouchableOpacity
                   onPress={() =>
-                    navigation.navigate("ProductDetail", { product: item })
+                    navigation.navigate('ProductDetail', { product: item })
                   }
                 >
                   <ProductCard
@@ -169,16 +172,16 @@ const Home = ({ navigation }: StackScreenProps<HomeNavParamList, "Home">) => {
             />
           </Box>
           <Box
-            style={{ alignItems: "center", marginRight: -20, marginTop: 20 }}
+            style={{ alignItems: 'center', marginRight: -20, marginTop: 20 }}
           >
-            <Banner image={require("../../assets/banner1.jpeg")} margin />
+            <Banner image={require('../../assets/offer/offer1.jpg')} margin />
           </Box>
           <Box style={styles.products}>
             {products.map((product, index) => {
               return (
                 <TouchableOpacity
                   onPress={() =>
-                    navigation.navigate("ProductDetail", { product: product })
+                    navigation.navigate('ProductDetail', { product: product })
                   }
                 >
                   <ProductCard key={index} product={product} />

@@ -34,6 +34,8 @@ export type HomeNavParamList = {
 export type ExploreNavParamList = {
   Explore: undefined;
   CategoryDetail: { category: Category };
+  Favorites: undefined;
+  Notifications: undefined;
 };
 
 export type AppNavParamList = {
